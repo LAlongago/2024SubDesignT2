@@ -25,7 +25,9 @@ void HashTable::insert(const QString& key) {
     int index = hash(key);
     while (!table[index].key.isEmpty() && table[index].key != key) {
         index = (index + 1) % 41;
+        searchCount++; // 增加查找次数
     }
+    searchCount++; // 包括找到空槽位或已有关键字的最终查找
     if (table[index].key.isEmpty()) {
         table[index] = HashNode(key, 1);
     }
@@ -34,7 +36,9 @@ void HashTable::insert(const QString& key) {
     }
 }
 
+
 void HashTable::statistic(const QString& filename) {
+    timer.start(); // 计时开始
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -49,6 +53,7 @@ void HashTable::statistic(const QString& filename) {
             QString word = match.captured(0);
             if (keywords.contains(word)) {
                 insert(word);
+                searchCount++;
             }
         }
     }
@@ -59,6 +64,8 @@ void HashTable::statistic(const QString& filename) {
             qDebug() << node.key << ":" << node.count;
         }
     }
+    qDebug() << "Total search count:" << searchCount;
+    qDebug() << "Elapsed time:" << timer.elapsed() << "milliseconds";
 }
 
 BinarySearch::BinarySearch() {
@@ -69,6 +76,7 @@ BinarySearch::BinarySearch() {
 BinarySearch::~BinarySearch() {}
 
 void BinarySearch::statistic(const QString& filename) {
+    timer.start(); // 计时开始
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         return;
@@ -102,6 +110,8 @@ void BinarySearch::statistic(const QString& filename) {
             qDebug() << keyword << ":" << keywordCounts[keyword];
         }
     }
+    qDebug() << "Total search count:" << searchCount;
+    qDebug() << "Elapsed time:" << timer.elapsed() << "milliseconds";
 }
 
 // BinarySearch类中的binarySearch方法
@@ -110,6 +120,7 @@ int BinarySearch::binarySearch(const QString& key) {
     int high = sortedKeywords.size() - 1;
     while (low <= high) {
         int mid = (low + high) / 2;
+        searchCount++; // 每次比较都增加查找次数
         if (sortedKeywords[mid] < key) {
             low = mid + 1;
         }
@@ -122,3 +133,4 @@ int BinarySearch::binarySearch(const QString& key) {
     }
     return -1; // 未找到关键字
 }
+

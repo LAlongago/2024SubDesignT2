@@ -8,6 +8,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QMap>
+#include <QElapsedTimer>
 #include <algorithm>
 
 class KeywordStatistics {
@@ -34,6 +35,8 @@ private:
     };
 
     QVector<HashNode> table;
+    int searchCount = 0; // 新增查找次数计数器
+    QElapsedTimer timer; // 新增计时器
     int hash(const QString& key);
     void insert(const QString& key);
 };
@@ -48,6 +51,8 @@ public:
 private:
     QVector<QString> sortedKeywords;
     QMap<QString, int> keywordCounts;
+    int searchCount = 0; // 新增查找次数计数器
+    QElapsedTimer timer; // 新增计时器
     int binarySearch(const QString& key);
 };
 
