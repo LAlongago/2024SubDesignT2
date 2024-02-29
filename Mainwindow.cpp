@@ -65,6 +65,7 @@ void Mainwindow::updateResultsViewer()
     binaryResultsStr += "Keywords and Frequencies:\n";
     for (auto it = binaryResults.constBegin(); it != binaryResults.constEnd(); ++it) 
     {
+        if (it.value() == 0) continue;
         binaryResultsStr += it.key() + ": " + QString::number(it.value()) + "\n";
     }
 

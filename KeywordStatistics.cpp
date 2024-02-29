@@ -32,7 +32,8 @@ int HashTable::hash(const QString& key)
 void HashTable::insert(const QString& key)
 {
     int index = hash(key);
-    while (!table[index].key.isEmpty() && table[index].key != key) {
+    while (!table[index].key.isEmpty() && table[index].key != key) 
+    {
         index = (index + 1) % table.size();
         searchCount++; // 增加查找次数
     }
@@ -166,7 +167,8 @@ int BinarySearch::binarySearch(const QString& key)
         {
             high = mid - 1;
         }
-        else {
+        else 
+        {
             return mid; // 找到关键字
         }
     }
