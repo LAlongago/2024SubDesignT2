@@ -25,6 +25,9 @@ public:
     HashTable();
     ~HashTable();
     void statistic(const QString& filename) override;
+    QMap<QString, int> getResults() const;
+    int getSearchCount() const;
+    qint64 getElapsedTime() const;
 
 private:
     struct HashNode {
@@ -35,8 +38,9 @@ private:
     };
 
     QVector<HashNode> table;
-    int searchCount = 0; // 新增查找次数计数器
+    int searchCount; // 新增查找次数计数器
     QElapsedTimer timer; // 新增计时器
+    QMap<QString, int> results; // 关键字和频次的映射
     int hash(const QString& key);
     void insert(const QString& key);
 };
@@ -47,12 +51,15 @@ public:
     BinarySearch();
     ~BinarySearch();
     void statistic(const QString& filename) override;
+    QMap<QString, int> getResults() const;
+    int getSearchCount() const;
+    qint64 getElapsedTime() const;
 
 private:
     QVector<QString> sortedKeywords;
-    QMap<QString, int> keywordCounts;
-    int searchCount = 0; // 新增查找次数计数器
+    int searchCount; // 新增查找次数计数器
     QElapsedTimer timer; // 新增计时器
+    QMap<QString, int> keywordCounts; // 关键字和频次的映射
     int binarySearch(const QString& key);
 };
 
