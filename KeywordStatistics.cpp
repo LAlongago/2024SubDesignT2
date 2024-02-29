@@ -102,7 +102,7 @@ QMap<QString, int> BinarySearch::getResults() const { return keywordCounts; }
 int BinarySearch::getSearchCount() const { return searchCount; }
 qint64 BinarySearch::getElapsedTime() const { return timer.elapsed(); }
 
-void BinarySearch::statistic(const QString& filename) 
+void BinarySearch::statistic(const QString& filename)
 {
     timer.start(); // 计时开始
     QFile file(filename);
@@ -113,23 +113,23 @@ void BinarySearch::statistic(const QString& filename)
     QRegularExpression wordRegex("\\b[A-Za-z_]+\\b");
 
     // 初始化关键字计数器
-    for (const auto& keyword : keywords) 
+    for (const auto& keyword : keywords)
     {
         keywordCounts[keyword] = 0;
     }
 
-    while (!in.atEnd()) 
-
+    while (!in.atEnd())
+    {
         QString line = in.readLine();
         QRegularExpressionMatchIterator it = wordRegex.globalMatch(line);
-        while (it.hasNext()) 
+        while (it.hasNext())
         {
             QRegularExpressionMatch match = it.next();
             QString word = match.captured(0);
-            if (keywords.contains(word)) 
+            if (keywords.contains(word))
             {
                 // 使用二分查找确定是否为关键字并计数
-                if (binarySearch(word) != -1) 
+                if (binarySearch(word) != -1)
                 {
                     keywordCounts[word]++;
                 }
