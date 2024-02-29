@@ -11,7 +11,8 @@
 #include <QElapsedTimer>
 #include <algorithm>
 
-class KeywordStatistics {
+class KeywordStatistics
+{
 public:
     virtual ~KeywordStatistics() {}
     virtual void statistic(const QString& filename) = 0;
@@ -20,7 +21,8 @@ protected:
 };
 
 // 哈希表类
-class HashTable : public KeywordStatistics {
+class HashTable : public KeywordStatistics 
+{
 public:
     HashTable();
     ~HashTable();
@@ -30,7 +32,8 @@ public:
     qint64 getElapsedTime() const;
 
 private:
-    struct HashNode {
+    struct HashNode
+    {
         QString key;
         int count;
         HashNode() : count(0) {}
@@ -46,7 +49,8 @@ private:
 };
 
 // 二分查找类
-class BinarySearch : public KeywordStatistics {
+class BinarySearch : public KeywordStatistics 
+{
 public:
     BinarySearch();
     ~BinarySearch();

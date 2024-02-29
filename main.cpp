@@ -11,12 +11,13 @@ int main(int argc, char *argv[])
 
 //#include <QCoreApplication>
 //#include <QDebug>
-//#include "KeywordStatistics.h" // 确保包含了正确的头文件路径
+//#include "KeywordStatistics.h" 
 //
-//int main(int argc, char* argv[]) {
+//int main(int argc, char* argv[]) 
+// {
 //    QCoreApplication a(argc, argv);
 //
-//    QString filename = "test.c"; // 指向你的测试文件路径
+//    QString filename = "test.c"; // 指向测试文件路径
 //
 //    qDebug() << "Testing HashTable:";
 //    HashTable hashTable;

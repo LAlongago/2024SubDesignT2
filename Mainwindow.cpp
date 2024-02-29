@@ -31,7 +31,8 @@ void Mainwindow::on_startSearch_clicked()
 void Mainwindow::updateCodePreviewer(const QString& filePath)
 {
     QFile file(filePath);
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) 
+    {
         QTextStream in(&file);
         ui.codePreviewer->setText(in.readAll());
     }
@@ -48,7 +49,8 @@ void Mainwindow::updateResultsViewer()
     hashResultsStr += "Search Count: " + QString::number(hashSearchCount) + "\n";
     hashResultsStr += "Elapsed Time: " + QString::number(hashElapsedTime) + " ms\n";
     hashResultsStr += "Keywords and Frequencies:\n";
-    for (auto it = hashResults.constBegin(); it != hashResults.constEnd(); ++it) {
+    for (auto it = hashResults.constBegin(); it != hashResults.constEnd(); ++it)
+    {
         hashResultsStr += it.key() + ": " + QString::number(it.value()) + "\n";
     }
 
@@ -61,7 +63,8 @@ void Mainwindow::updateResultsViewer()
     binaryResultsStr += "Search Count: " + QString::number(binarySearchCount) + "\n";
     binaryResultsStr += "Elapsed Time: " + QString::number(binaryElapsedTime) + " ms\n";
     binaryResultsStr += "Keywords and Frequencies:\n";
-    for (auto it = binaryResults.constBegin(); it != binaryResults.constEnd(); ++it) {
+    for (auto it = binaryResults.constBegin(); it != binaryResults.constEnd(); ++it) 
+    {
         binaryResultsStr += it.key() + ": " + QString::number(it.value()) + "\n";
     }
 
